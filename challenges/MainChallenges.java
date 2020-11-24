@@ -13,5 +13,9 @@ public class MainChallenges
             System.out.print(fibonacci.calculateFibonacci(i) + " ");
         }
         System.out.println();
+
+        // Testing recursive Fatorial
+        RecursiveFatorial fatorial = new RecursiveFatorial();
+        System.out.println("!4 = " + fatorial.calculatefatorial(4));
     }    
 }
