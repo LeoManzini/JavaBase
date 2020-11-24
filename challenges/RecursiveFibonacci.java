@@ -2,21 +2,11 @@ package challenges;
 
 public class RecursiveFibonacci 
 {
-    int a;
-    int b = 1;
-    int counter;
-
-    int calculateFibonacci()
+    int calculateFibonacci(int value)
     {   
-        System.out.println(this.a);
-        this.b += this.a;
-        this.a = this.b - this.a;
-
-        if (this.counter <= 15)
-        {
-            this.counter++;
-        }
-
-        return this.a;
+        if (value < 2) { 
+            return value;
+            }
+        return calculateFibonacci(value - 1) + calculateFibonacci(value - 2);
     }
 }
