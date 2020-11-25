@@ -1,0 +1,19 @@
+This is a tutorial about how to link your local repository to your remote's one, using Git and Github.
+
+First: In a terminal, type ssh-keygen -t ed25519 -C "your_email@example.com". This creates a new ssh key, using the provided email.
+
+Second: When you're prompted to "Enter a file in which to save the key," press Enter. This accepts the default file location (home/user/.ssh).
+
+Third: Enter a phrase and record this to acess your key later.
+
+Fourth: Start the ssh-agent in the background (eval "$(ssh-agent -s)").
+
+Fifth: Add your SSH private key to the ssh-agent. If you created your key with a different name, or if you are adding an existing key that has a different name, replace id_ed25519 in the command with the name of your private key file (ssh-add ~/.ssh/id_ed25519).
+
+Sixth: at your repo go to settings and deploy keys, here you give a name to the key and paste the content of your public key (.pub), enable the write acess and add key.
+
+Seventh: Now you need to use (ssh -T git@github.com).
+
+Eighth: In the end paste the follow command with your information (git remote set-url origin git@github.com:LeoManzini/my-repo).
+
+That is the end.
