@@ -1,12 +1,21 @@
 package bank;
 
+import java.util.Random;
+
 class Date
 {
-    String day;
-    String mounth;
-    String year;
+    private int mounth;
+    private int day;
+    private int year;
 
-    String formatedDate() 
+    public Date(int day, int mounth, int year)
+    {
+        this.day = day;
+        this.mounth = mounth;
+        this.year = year;
+    }
+
+    public String formatedDate() 
     {
         String newDate = this.day + "/";
         newDate += this.mounth + "/";
@@ -14,17 +23,39 @@ class Date
 
         return newDate;
     }
+
+    public int getDay() 
+    {
+        return day;
+    }
+
+    public int getMounth() 
+    {
+        return mounth;
+    }
+    
+    public int getYear() 
+    {
+        return year;
+    }
 }
 
 public class BankAccount 
 {
-    String holder;
-    int number;
-    String agency;
-    double funds;
-    Date openingDate; 
-    
-    boolean withdraw(double amount)
+    private String holder;
+    private int number;
+    private String agency = "0001";
+    private double funds;
+    private Date openingDate; 
+    private Random rand = new Random();
+
+    public BankAccount(double funds)
+    {
+        this.number = rand.nextInt(9999);
+        this.funds = funds;
+    }
+
+	public boolean withdraw(double amount)
     {
         if(this.funds < amount)
         {
@@ -39,12 +70,12 @@ public class BankAccount
         }
     }
 
-    void deposit(double amount)
+    public void deposit(double amount)
     {
         this.funds += amount;
     }
 
-    void transferTo(BankAccount account, double amount)
+    public void transferTo(BankAccount account, double amount)
     {
         if(withdraw(amount))
         {
@@ -57,13 +88,13 @@ public class BankAccount
         }
     }
 
-    double monthlyDividendYield(double yield)
+    public double monthlyDividendYield(double yield)
     {
         yield /= 100;
         return (yield * this.funds) / 12;
     }
 
-    String printData()
+    public String printData()
     {
         String data = "Holder: " + this.holder;
         data += "\nAccount number: " + this.number;
@@ -73,5 +104,40 @@ public class BankAccount
         data += "\nMonthly yeld; " + this.monthlyDividendYield(6);
 
         return data;
+    }
+
+    public String getHolder()
+    {
+        return this.holder;
+    }
+
+    public void setHolder(String holder)
+    {
+        this.holder = holder;
+    }
+
+    public int getNumber()
+    {
+        return this.number;
+    }
+
+    public String getAgency()
+    {
+        return this.agency;
+    }
+
+    public double getFunds()
+    {
+        return this.funds;
+    }
+
+    public Date getOpeningDate()
+    {
+        return this.openingDate;
+    }
+
+    public void setOpeningDate(int day, int mounth, int year)
+    {
+        this.openingDate = new Date (day, mounth, year);
     }
 }
