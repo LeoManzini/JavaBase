@@ -48,11 +48,13 @@ public class BankAccount
     private double funds;
     private Date openingDate; 
     private Random rand = new Random();
+    private static int numberOfAccounts;
 
     public BankAccount(double funds)
     {
         this.number = rand.nextInt(9999);
         this.funds = funds;
+        numberOfAccounts++;
     }
 
 	public boolean withdraw(double amount)
@@ -104,6 +106,11 @@ public class BankAccount
         data += "\nMonthly yeld; " + this.monthlyDividendYield(6);
 
         return data;
+    }
+
+    public static int getNumberOfAccounts()
+    {
+        return numberOfAccounts;
     }
 
     public String getHolder()
