@@ -1,4 +1,7 @@
-package challenges;
+package br.com.leomanzini.challenges.main;
+
+import challenges.RecursiveFatorial;
+import challenges.RecursiveFibonacci;
 
 public class MainChallenges 
 {

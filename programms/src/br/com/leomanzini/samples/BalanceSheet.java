@@ -1,3 +1,5 @@
+package src.br.com.leomanzini.samples;
+
 public class BalanceSheet 
 {
     public static void main(String args[]) 

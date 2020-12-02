@@ -2,12 +2,12 @@ package exercises;
 
 public class Door {
     boolean doorOpen;
-    String color;
-    double xDimension;
-    double yDimension;
-    double zDimension;
+    public String color;
+    public double xDimension;
+    public double yDimension;
+    public double zDimension;
     
-    void open()
+    public void open()
     {
         if(this.isItOpen())
         {
@@ -20,7 +20,7 @@ public class Door {
         }
     }
 
-    void close()
+    public void close()
     {
         if(this.isItOpen())
         {

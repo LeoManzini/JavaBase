@@ -1,3 +1,5 @@
+package src.br.com.leomanzini.samples;
+
 public class ModifyingHelloWorld 
 {
     public static void main(String args[]) 

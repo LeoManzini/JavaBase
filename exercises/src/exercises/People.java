@@ -2,10 +2,10 @@ package exercises;
 
 public class People 
 {
-    String name;
-    int age;
+    public String name;
+    public int age;
 
-    void birthday()
+    public void birthday()
     {
         this.age++;
         if(this.name == "Giovanna")

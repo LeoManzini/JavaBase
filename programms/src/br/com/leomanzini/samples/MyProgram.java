@@ -1,4 +1,4 @@
-package normalProgramms;
+package src.br.com.leomanzini.samples;
 
 // First class, have the same name as the program
 public class MyProgram 

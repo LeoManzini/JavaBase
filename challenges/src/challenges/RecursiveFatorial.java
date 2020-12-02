@@ -1,7 +1,8 @@
 package challenges;
 
 public class RecursiveFatorial {
-    int calculatefatorial(int fact)
+	
+    public int calculatefatorial(int fact)
     {
         if(fact == 0)
         {

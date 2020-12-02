@@ -1,4 +1,8 @@
-package exercises;
+package br.com.leomanzini.exercises.mainomanzini.exercises.main;
+
+import exercises.Door;
+import exercises.House;
+import exercises.People;
 
 public class Main 
 {

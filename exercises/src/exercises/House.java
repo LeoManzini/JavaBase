@@ -2,10 +2,10 @@ package exercises;
 
 public class House 
 {
-    String color;
-    Door door1;
-    Door door2;
-    Door door3;
+    public String color;
+    public Door door1;
+    public Door door2;
+    public Door door3;
     
     void paint(String color)
     {
@@ -13,7 +13,7 @@ public class House
         System.out.println("The house is painted " + this.color);
     }
 
-    int manyOpenDoors()
+    public int manyOpenDoors()
     {
         int total = 0;
 
