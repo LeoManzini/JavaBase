@@ -2,6 +2,13 @@ package br.com.leomanzini.bankAccount;
 
 import java.util.Random;
 
+/**
+ * This class create a new Bank Account to the bank Leo's Bank.
+ * 
+ * @author LeoManzini
+ *
+ */
+
 public class BankAccount 
 {
     private String holder;
@@ -12,6 +19,12 @@ public class BankAccount
     private Random rand = new Random();
     private static int numberOfAccounts;
 
+    /**
+     * Constructor receive only the account start funds, create a number to the account 
+     * and increase by one the total of accounts created.  
+     * 
+     * @param funds
+     */
     public BankAccount(double funds)
     {
         this.number = rand.nextInt(9999);
@@ -19,6 +32,12 @@ public class BankAccount
         numberOfAccounts++;
     }
 
+    /**
+     * Withdraw an amount of money, if it's possible.
+     * 
+     * @param amount
+     * @return true for success and false if you don't have enough funds.
+     */
 	public boolean withdraw(double amount)
     {
         if(this.funds < amount)
@@ -34,11 +53,22 @@ public class BankAccount
         }
     }
 
+	/**
+	 * Increase your total account funds, by the amount
+	 * 
+	 * @param amount
+	 */
     public void deposit(double amount)
     {
         this.funds += amount;
     }
 
+    /**
+     * If you have funds, deposit the amount at the account received, and withdraw of your funds.
+     * 
+     * @param account
+     * @param amount
+     */
     public void transferTo(BankAccount account, double amount)
     {
         if(withdraw(amount))
@@ -52,12 +82,23 @@ public class BankAccount
         }
     }
 
+    /**
+     * return your monthly dividend yield, calculates with your funds and yield percentage.
+     * 
+     * @param yield
+     * @return
+     */
     public double monthlyDividendYield(double yield)
     {
         yield /= 100;
         return (yield * this.funds) / 12;
     }
 
+    /**
+     * Future ToString method.
+     * 
+     * @return
+     */
     public String printData()
     {
         String data = "Holder: " + this.holder;
@@ -69,7 +110,12 @@ public class BankAccount
 
         return data;
     }
-
+    
+    /**
+     * Total of accouts created using the class.
+     * 
+     * @return
+     */
     public static int getNumberOfAccounts()
     {
         return numberOfAccounts;
@@ -105,8 +151,8 @@ public class BankAccount
         return this.openingDate;
     }
 
-    public void setOpeningDate(int day, int mounth, int year)
+    public void setOpeningDate(Date date)
     {
-        this.openingDate = new Date (day, mounth, year);
+        this.openingDate = date;
     }
 }

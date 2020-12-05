@@ -1,6 +1,7 @@
 package br.com.leomanzini.bankAccount.main;
 
 import br.com.leomanzini.bankAccount.BankAccount;
+import br.com.leomanzini.bankAccount.Date;
 
 public class MainAccount 
 {
@@ -9,7 +10,7 @@ public class MainAccount
         BankAccount mineAccount = new BankAccount(1000.00);
 
         mineAccount.setHolder("Leonardo");
-        mineAccount.setOpeningDate(30, 11, 2020);
+        mineAccount.setOpeningDate(new Date(5, 12, 2020));
 
         mineAccount.deposit(100);
         String data = mineAccount.printData();

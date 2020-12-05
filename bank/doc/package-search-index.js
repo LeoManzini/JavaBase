@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"br.com.leomanzini.bankAccount"},{"l":"br.com.leomanzini.bankAccount.main"}]
