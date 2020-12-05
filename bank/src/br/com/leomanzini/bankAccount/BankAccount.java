@@ -65,7 +65,7 @@ public class BankAccount
         data += "\nAgency number: " + this.agency;
         data += "\nTotal funds: " + this.funds;
         data += "\nOpening date: " + this.openingDate.formatedDate();
-        data += "\nMonthly yeld; " + this.monthlyDividendYield(6);
+        data += "\nMonthly yeld: " + this.monthlyDividendYield(6);
 
         return data;
     }
