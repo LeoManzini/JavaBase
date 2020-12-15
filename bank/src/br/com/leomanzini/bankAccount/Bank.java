@@ -9,7 +9,7 @@ import java.util.Random;
  *
  */
 
-public class BankAccount 
+public class Bank 
 {
     private String holder;
     private int number;
@@ -25,7 +25,7 @@ public class BankAccount
      * 
      * @param funds
      */
-    public BankAccount(double funds)
+    public Bank(double funds)
     {
         this.number = rand.nextInt(9999);
         this.funds = funds;
@@ -69,7 +69,7 @@ public class BankAccount
      * @param account
      * @param amount
      */
-    public void transferTo(BankAccount account, double amount)
+    public void transferTo(Bank account, double amount)
     {
         if(withdraw(amount))
         {
