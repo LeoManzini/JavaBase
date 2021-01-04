@@ -9,15 +9,18 @@ import java.util.Random;
  *
  */
 
-public class Bank 
+public class Account 
 {
     private String holder;
     private int number;
     private String agency = "0001";
     private double funds;
     private Date openingDate; 
+    private String type;
     private Random rand = new Random();
     private static int numberOfAccounts;
+    private static int numberOfCurrentAccounts;
+    private static int numberOfSavingsAccounts;
 
     /**
      * Constructor receive only the account start funds, create a number to the account 
@@ -25,13 +28,27 @@ public class Bank
      * 
      * @param funds
      */
-    public Bank(double funds)
+    public Account(double funds)
     {
         this.number = rand.nextInt(9999);
         this.funds = funds;
         numberOfAccounts++;
     }
 
+    public Account(double funds, String type)
+    {
+        this(funds);
+        
+        if(type == "Current Account" || type == "Current account" || type == "current account") 
+        {
+        	this.type = "Current Account";
+        	numberOfCurrentAccounts++;
+        } else {
+        	this.type = "Savings Account";
+        	numberOfSavingsAccounts++;
+        }
+    }
+    
     /**
      * Withdraw an amount of money, if it's possible.
      * 
@@ -69,7 +86,7 @@ public class Bank
      * @param account
      * @param amount
      */
-    public void transferTo(Bank account, double amount)
+    public void transferTo(Account account, double amount)
     {
         if(withdraw(amount))
         {
@@ -93,6 +110,20 @@ public class Bank
         yield /= 100;
         return (yield * this.funds) / 12;
     }
+    
+    public void changeType()
+    {
+    	if(this.type == "Current Account")
+    	{
+    		this.type = "Savings Account";
+    		System.out.println("Type of the account has changed.");
+    	}
+    	else if(this.type == "Savings Account")
+    	{
+    		this.type = "Current Account";
+    		System.out.println("Type of the account has changed.");
+    	}
+    }
 
     /**
      * Future ToString method.
@@ -107,7 +138,8 @@ public class Bank
         data += "\nTotal funds: " + this.funds;
         data += "\nOpening date: " + this.openingDate.formatedDate();
         data += "\nMonthly yeld: " + this.monthlyDividendYield(6);
-
+        data += "\nAccount Type: " + this.getType();
+        
         return data;
     }
     
@@ -121,6 +153,16 @@ public class Bank
         return numberOfAccounts;
     }
 
+    public static int getNumberOfCurrentAccounts()
+    {
+        return numberOfCurrentAccounts;
+    }
+    
+    public static int getNumberOfSavingsAccounts()
+    {
+        return numberOfSavingsAccounts;
+    }
+    
     public String getHolder()
     {
         return this.holder;
@@ -154,5 +196,10 @@ public class Bank
     public void setOpeningDate(Date date)
     {
         this.openingDate = date;
+    }
+    
+    public String getType()
+    {
+    	return this.type;
     }
 }
