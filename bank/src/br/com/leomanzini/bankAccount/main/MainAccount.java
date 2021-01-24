@@ -1,22 +1,24 @@
 package br.com.leomanzini.bankAccount.main;
 
 import br.com.leomanzini.bankAccount.Account;
+import br.com.leomanzini.bankAccount.CurrentAccount;
 import br.com.leomanzini.bankAccount.Date;
-import br.com.leomanzini.bankAccount.Employee;
 
 public class MainAccount 
 {
     public static void main(String args[])
     {
-        Account mineAccount = new Account(1000.00);
+    	CurrentAccount mineAccount = new CurrentAccount(1000.00);
         
         mineAccount.setHolder("Leonardo");
         mineAccount.setOpeningDate(new Date(5, 12, 2020));
 
         mineAccount.deposit(100);
-        String data = mineAccount.printData();
+
         
-        System.out.println(data);
+        System.out.println(mineAccount.toString());
+        mineAccount.changeType();
+        System.out.println(mineAccount.toString());
         System.out.println("Total of open accounts: " + Account.getNumberOfAccounts());
     }
 }

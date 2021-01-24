@@ -9,14 +9,14 @@ import java.util.Random;
  *
  */
 
-public class Account 
+public abstract class Account 
 {
     private String holder;
     private int number;
     private String agency = "0001";
     private double funds;
     private Date openingDate; 
-    private String type;
+    protected String type;
     private Random rand = new Random();
     private static int numberOfAccounts;
     private static int numberOfCurrentAccounts;
@@ -35,18 +35,15 @@ public class Account
         numberOfAccounts++;
     }
 
+    /**
+     * Standard constructor to this class
+     * @param funds
+     * @param type
+     */
     public Account(double funds, String type)
     {
         this(funds);
-        
-        if(type == "Current Account" || type == "Current account" || type == "current account") 
-        {
-        	this.type = "Current Account";
-        	numberOfCurrentAccounts++;
-        } else {
-        	this.type = "Savings Account";
-        	numberOfSavingsAccounts++;
-        }
+        setType(type);
     }
     
     /**
@@ -111,40 +108,26 @@ public class Account
         return (yield * this.funds) / 12;
     }
     
-    public void changeType()
-    {
-    	if(this.type == "Current Account")
-    	{
-    		this.type = "Savings Account";
-    		System.out.println("Type of the account has changed.");
-    	}
-    	else if(this.type == "Savings Account")
-    	{
-    		this.type = "Current Account";
-    		System.out.println("Type of the account has changed.");
-    	}
-    }
+    public abstract void changeType();
 
     /**
-     * Future ToString method.
+     * ToString method.
      * 
      * @return
      */
-    public String printData()
-    {
-        String data = "Holder: " + this.holder;
-        data += "\nAccount number: " + this.number;
-        data += "\nAgency number: " + this.agency;
-        data += "\nTotal funds: " + this.funds;
-        data += "\nOpening date: " + this.openingDate.formatedDate();
-        data += "\nMonthly yeld: " + this.monthlyDividendYield(6);
-        data += "\nAccount Type: " + this.getType();
-        
-        return data;
-    }
-    
-    /**
-     * Total of accouts created using the class.
+    @Override
+	public String toString() {
+		return "Account Holder: " + this.holder + 
+			   "\nAccount number: " + this.number + 
+			   "\nAgency number: " + this.agency +
+			   "\nTotal funds: " + this.funds +
+			   "\nOpening date: " + this.openingDate.formatedDate() + 
+			   "\nMonthly yeld: " + this.monthlyDividendYield(6) +
+			   "\nAccount Type: " + this.getType();
+	}
+
+	/**
+     * Total of accounts created using the class.
      * 
      * @return
      */
@@ -198,8 +181,15 @@ public class Account
         this.openingDate = date;
     }
     
-    public String getType()
+    public abstract String getType();
+    
+    private void setType(String type) 
     {
-    	return this.type;
+    	if(type == "Current Account" || type == "Current account" || type == "current account") 
+        {
+        	this.type = "Current Account";
+        } else {
+        	this.type = "Savings Account";
+        }
     }
 }
