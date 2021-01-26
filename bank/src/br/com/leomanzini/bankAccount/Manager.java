@@ -7,7 +7,10 @@ public class Manager extends Employee implements Authenticable
 	public Manager(String name, String cpf, double salary, String password) 
 	{
 		super(name, cpf, salary);
-		setPassword(password);
+		if(passwordIntegrity(password))
+		{
+			setPassword(password);
+		} 
 	}
 	
 	@Override
@@ -48,15 +51,12 @@ public class Manager extends Employee implements Authenticable
 			
 			if(returnNumber && returnLetter)
 			{
-				System.out.println("Valid password!");
 				return true;
 			} else {
-				System.out.println("Invalid password!");
 				return false;
 			}
 			
 		} else {
-			System.out.println("Invalid password!");
 			return false;
 		}
 	}
@@ -77,8 +77,13 @@ public class Manager extends Employee implements Authenticable
 	{
 		if(validateCPF(cpf) && authenticate(oldPassword))
 		{
-			setPassword(newPassword);
-			System.out.println("Password changed.");
+			if(passwordIntegrity(password))
+			{
+				setPassword(newPassword);
+				System.out.println("Password changed.");
+			} else {
+				System.out.println("Can't change password!");
+			}
 		} else {
 			System.out.println("Wrong CPF, can't change password.");
 		}
