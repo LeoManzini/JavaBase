@@ -1,10 +1,10 @@
 package br.com.leomanzini.bankAccount;
 
-public class Employee 
+public abstract class Employee 
 {
 	private String name;
 	private String cpf;
-	private double salary;
+	protected double salary;
 	
 	public Employee(String name, String cpf, double salary)
 	{
@@ -13,11 +13,8 @@ public class Employee
 		this.salary = salary;
 	}
 	
-	public void salaryIncrease(double percentage)
-	{
-		percentage /= 100;
-		this.salary += (this.salary * percentage);
-	}
+	public abstract void salaryIncrease(double percentage);
+	public abstract void bonus();
 	
 	public String getName() 
 	{
