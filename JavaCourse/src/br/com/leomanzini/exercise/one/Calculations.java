@@ -10,7 +10,7 @@ public class Calculations {
 		
 		final double PI = 3.14159;
 		
-		System.out.println("Enter with three numders: ");
+		System.out.println("Enter with three numbers: ");
 		double firstNumber = sc.nextDouble();
 		double secondNumber = sc.nextDouble();
 		double thirdNumber = sc.nextDouble();
