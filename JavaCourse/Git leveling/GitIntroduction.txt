@@ -1,0 +1,44 @@
+Git: 
+
+Code versioning system, using it you control a project with different versions called as "commits";
+
+Projects that Git controls are called as repositories, who downloads a version of a repository, create a copy from the GitHub to your machine;
+
+To use Git at your computer, you need to install it at your machine, all the commands below is inside of git terminal called as Git Bash or at the cmd when you have installed git;
+
+Command to start a local repository:
+	git init (at the folder you want to init the repository)
+
+Command to see the repository status:
+	git status (at the folder you have a repository)
+
+Command to add modifications to your local repository:
+	git add <modification> or . or *
+
+Command to commit the added modifications:
+	git commit -m "Commit message"
+
+Command to create work branchs and go to them:
+	git branch -M branch_name // Create and go to the new branch
+	git branch branch_name // Just create a new branch
+
+Command to send a local repository to GitHub (where we have the remote repositories):
+	git remote add origin repo_name
+	git remote add origin repo_link
+
+Command to clone repositories from GitHub to your local git:
+	git clone <repo_url>
+
+Command to send alterations to GitHub:
+	git push                    // When you send modifications to a existing branch at GitHub
+	git push origin branch_name // When you send a new branch to GitHub
+
+Command to receive alterations from GitHub:
+	git pull                    // When you receive modifications from a existing branch at GitHub
+	git pull origin branch_name // When you receive a different branch from GitHub
+
+GitHub:
+
+It's a service for remotely hosting git repositories and also a social media for developers where you can add and follow other developers, pay attention because recruiters tend to view your GitHub as a resume;
+
+Nowadays you can have private and public repositories, some years ago not;
