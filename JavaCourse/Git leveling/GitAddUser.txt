@@ -1,0 +1,14 @@
+To configure a new user to Git at your desktop use the commands below:
+	git config --global user.name "your_name"
+	git config --global user.email "your_email"
+
+These commands add a new user with name and email to your git desktop, this user is used when you create "commits", is created with your configurations;
+
+To list the user configured, use the command:
+	git config --list
+
+To show the logs with who made the commits, use:
+	git log
+	git log --oneline // Show all the commits in just one line each
+
+At your project you have a file called .gitignore, it contains a file with some extensions you don't want to upload to your GitHub, like class files, binary files, property files, and so on; 
