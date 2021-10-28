@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS clients (
+	client_id BIGSERIAL PRIMARY KEY,
+	client_name VARCHAR(120) NOT NULL,
+	client_email VARCHAR(250) NOT NULL
+);
+
+SELECT * FROM CLIENTS;
