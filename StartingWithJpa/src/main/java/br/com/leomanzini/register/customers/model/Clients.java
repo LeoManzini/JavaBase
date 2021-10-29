@@ -76,4 +76,9 @@ public class Clients {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Client Nº: " + this.id + ", name: " + this.name + ", email: " + this.email;
+	}
 }
