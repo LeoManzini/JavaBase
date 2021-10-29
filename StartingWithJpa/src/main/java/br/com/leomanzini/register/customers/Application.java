@@ -12,9 +12,18 @@ public class Application {
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("dev-local-database");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-		Clients clientOne = entityManager.find(Clients.class, 1);
-
-		System.out.println(clientOne);
+//		Consultando uma entidade no banco
+//		Clients clientOne = entityManager.find(Clients.class, 1);
+//		System.out.println(clientOne);
+		
+		Clients clientTwo = new Clients();
+		clientTwo.setId(2);
+		clientTwo.setName("Leonardo");
+		clientTwo.setEmail("lg1.10@hotmail.com");
+		
+		entityManager.getTransaction().begin();
+		entityManager.persist(clientTwo);
+		entityManager.getTransaction().commit();
 
 		entityManager.close();
 		entityManagerFactory.close();
