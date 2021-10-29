@@ -17,8 +17,7 @@ public class Application {
 //		System.out.println(clientOne);
 		
 		Clients clientTwo = new Clients();
-		clientTwo.setId(2);
-		clientTwo.setName("Leonardo");
+		clientTwo.setName("Leonardo Henrique");
 		clientTwo.setEmail("lg1.10@hotmail.com");
 		
 		entityManager.getTransaction().begin();
