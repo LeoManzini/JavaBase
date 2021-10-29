@@ -16,12 +16,34 @@ public class Application {
 //		Clients clientOne = entityManager.find(Clients.class, 1);
 //		System.out.println(clientOne);
 		
-		Clients clientTwo = new Clients();
-		clientTwo.setName("Leonardo Henrique");
-		clientTwo.setEmail("lg1.10@hotmail.com");
+//		Inserindo um novo cliente na base
+//		Clients clientTwo = new Clients();
+//		clientTwo.setName("Leonardo Henrique");
+//		clientTwo.setEmail("lg1.10@hotmail.com");
+//		
+//		entityManager.getTransaction().begin();
+//		entityManager.persist(clientTwo);
+//		entityManager.getTransaction().commit();
 		
+//		Deletando um objeto do banco de dados
+//		Clients clientThree = entityManager.find(Clients.class, 3);
+//		entityManager.getTransaction().begin();
+//		entityManager.remove(clientThree);
+//		entityManager.getTransaction().commit();
+		
+// 		Atualizando os dados de um objeto na base com um objeto existente no codigo
+//		Clients clientOne = entityManager.find(Clients.class, 1);
+//		entityManager.getTransaction().begin();
+//		clientOne.setName(clientOne.getName() + " de Oliveira");
+//		entityManager.getTransaction().commit();
+		
+// 		Atualizando um objeto novo no codigo 
+		Clients clientTwo = new Clients();
+		clientTwo.setId(2);
+		clientTwo.setName("Leonardo Henrique Manzini");
+		clientTwo.setEmail("lg1.10@hotmail.com");
 		entityManager.getTransaction().begin();
-		entityManager.persist(clientTwo);
+		entityManager.merge(clientTwo);
 		entityManager.getTransaction().commit();
 
 		entityManager.close();
