@@ -4,6 +4,23 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
+<!-- Persistencia usada na aula 1, pacote br.com.leomanzini.register.customers -->
+<!-- 	<persistence-unit name="dev-local-database" transaction-type="RESOURCE_LOCAL"> -->
+<!-- 		<properties> -->
+<!-- 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> DB Driver -->
+<!-- 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/learning-environment" /> BD Mane -->
+<!-- 			<property name="javax.persistence.jdbc.user" value="postgres" /> DB User -->
+<!-- 			<property name="javax.persistence.jdbc.password" value="281219" /> DB Password -->
+
+<!-- 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" /> DB Dialect -->
+<!-- 			<property name="hibernate.hbm2ddl.auto" value="update" /> create / create-drop / update -->
+
+<!-- 			<property name="hibernate.show_sql" value="true" /> Show SQL in console -->
+<!-- 			<property name="hibernate.format_sql" value="true" /> Show SQL formatted -->
+<!-- 		</properties> -->
+<!-- 	</persistence-unit> -->
+	
+<!-- Persistencia usada na aula 2, pacote br.com.leomanzini.user.system -->
 	<persistence-unit name="dev-local-database" transaction-type="RESOURCE_LOCAL">
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> <!-- DB Driver -->
@@ -12,7 +29,9 @@
 			<property name="javax.persistence.jdbc.password" value="281219" /> <!-- DB Password -->
 
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" /> <!-- DB Dialect -->
-			<property name="hibernate.hbm2ddl.auto" value="update" /> <!-- create / create-drop / update -->
+			
+			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/> <!-- create / create-drop / update -->
+            <property name="javax.persistence.sql-load-script-source" value="META-INF/database/data-loader.sql" /> <!-- load data to database -->
 
 			<property name="hibernate.show_sql" value="true" /> <!-- Show SQL in console -->
 			<property name="hibernate.format_sql" value="true" /> <!-- Show SQL formatted -->
