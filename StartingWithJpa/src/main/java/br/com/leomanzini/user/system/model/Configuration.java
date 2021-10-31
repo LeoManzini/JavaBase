@@ -1,32 +1,26 @@
 package br.com.leomanzini.user.system.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 
 @Entity
 public class Configuration {
-	
+
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@MapsId
 	@OneToOne
-	private User user;
-	
-	private boolean receiveNotifications;
-	private boolean finishSession;
-	
-	public Configuration() {
-	}
+	private SystemUser user;
 
-	public Configuration(Integer id, User user, boolean receiveNotifications, boolean finishSession) {
-		this.id = id;
-		this.user = user;
-		this.receiveNotifications = receiveNotifications;
-		this.finishSession = finishSession;
-	}
+	private boolean receiveNotifications;
+
+	private boolean logoutAutomatically;
 
 	public Integer getId() {
 		return id;
@@ -36,11 +30,11 @@ public class Configuration {
 		this.id = id;
 	}
 
-	public User getUser() {
+	public SystemUser getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(SystemUser user) {
 		this.user = user;
 	}
 
@@ -52,36 +46,28 @@ public class Configuration {
 		this.receiveNotifications = receiveNotifications;
 	}
 
-	public boolean isFinishSession() {
-		return finishSession;
+	public boolean isLogoutAutomatically() {
+		return logoutAutomatically;
 	}
 
-	public void setFinishSession(boolean finishSession) {
-		this.finishSession = finishSession;
+	public void setLogoutAutomatically(boolean logoutAutomatically) {
+		this.logoutAutomatically = logoutAutomatically;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+
+		Configuration that = (Configuration) o;
+
+		return id.equals(that.id);
 	}
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Configuration other = (Configuration) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
+		return id.hashCode();
 	}
 }

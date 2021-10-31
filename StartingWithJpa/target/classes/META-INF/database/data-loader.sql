@@ -1,8 +1,8 @@
-insert into dominio (id, nome) values (1, 'Banco de Dados');
-insert into dominio (id, nome) values (2, 'LDAP');
+insert into domain (name) values ('Banco de Dados');
+insert into domain (name) values ('LDAP');
 
-insert into usuario (id, nome, login, senha, dominio_id, ultimoAcesso) values (1, 'Cal Lightman', 'cal', '123', 1, sysdate());
-insert into usuario (id, nome, login, senha, dominio_id, ultimoAcesso) values (2, 'Gillian Foster', 'gillian', '123', 1, sysdate());
-insert into usuario (id, nome, login, senha, dominio_id, ultimoAcesso) values (3, 'Ria Torres', 'ria', '123', 1, sysdate());
-insert into usuario (id, nome, login, senha, dominio_id, ultimoAcesso) values (4, 'Eli Locker', 'eli', '123', 1, sysdate());
-insert into usuario (id, nome, login, senha, dominio_id, ultimoAcesso) values (5, 'Emily Lightman', 'emily', '123', 1, sysdate());
+insert into system_user (name, login, password, domain_id, last_acess) values ('Cal Lightman', 'cal', '123', 1, CURRENT_TIMESTAMP);
+insert into system_user (name, login, password, domain_id, last_acess) values ('Gillian Foster', 'gillian', '123', 1, CURRENT_TIMESTAMP);
+insert into system_user (name, login, password, domain_id, last_acess) values ('Ria Torres', 'ria', '123', 1, CURRENT_TIMESTAMP);
+insert into system_user (name, login, password, domain_id, last_acess) values ('Eli Locker', 'eli', '123', 1, CURRENT_TIMESTAMP);
+insert into system_user (name, login, password, domain_id, last_acess) values ('Emily Lightman', 'emily', '123', 1, CURRENT_TIMESTAMP);

@@ -1,31 +1,26 @@
 package br.com.leomanzini.user.system.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "domain")
 public class Domain {
-	
-	@Id
-	private Integer id;
-	
-	private String name;
-	
-	@OneToMany(mappedBy = "domain")
-	private List<User> users = new ArrayList<>();
-	
-	public Domain() {
-	}
 
-	public Domain(Integer id, String name, List<User> users) {
-		this.id = id;
-		this.name = name;
-		this.users = users;
-	}
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
+	private String name;
+
+	@OneToMany(mappedBy = "domain")
+	private List<SystemUser> users;
 
 	public Integer getId() {
 		return id;
@@ -43,36 +38,28 @@ public class Domain {
 		this.name = name;
 	}
 
-	public List<User> getUsers() {
+	public List<SystemUser> getUsers() {
 		return users;
 	}
 
-	public void setUsers(List<User> users) {
+	public void setUsers(List<SystemUser> users) {
 		this.users = users;
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+
+		Domain dominio = (Domain) o;
+
+		return id.equals(dominio.id);
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Domain other = (Domain) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
+	public int hashCode() {
+		return id.hashCode();
 	}
 }

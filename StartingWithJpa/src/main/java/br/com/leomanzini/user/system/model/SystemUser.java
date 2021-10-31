@@ -2,20 +2,28 @@ package br.com.leomanzini.user.system.model;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
-public class User {
+@Table(name = "system_user")
+public class SystemUser {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	private String login;
 	private String password;
 	private String name;
+	
+	@Column(name = "last_acess")
 	private LocalDateTime lastAccess;
 	
 	@ManyToOne
@@ -24,10 +32,10 @@ public class User {
 	@OneToOne(mappedBy = "user")
 	private Configuration configuration;
 
-	public User() {
+	public SystemUser() {
 	}
 	
-	public User(Integer id, String login, String password, String name, LocalDateTime lastAccess, Domain domain,
+	public SystemUser(Integer id, String login, String password, String name, LocalDateTime lastAccess, Domain domain,
 			Configuration configuration) {
 		this.id = id;
 		this.login = login;
@@ -110,7 +118,7 @@ public class User {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		SystemUser other = (SystemUser) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
