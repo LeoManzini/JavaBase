@@ -6,6 +6,7 @@ import br.com.leomanzini.user.system.model.SystemUser;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
 public class JpqlApplication {
@@ -39,6 +40,16 @@ public class JpqlApplication {
 		TypedQuery<SystemUser> typedFilteredQuery = entityManager.createQuery(filteredQuery, SystemUser.class);
 		SystemUser user = typedFilteredQuery.getSingleResult();
 
+		System.out.println(user);
+	}
+	
+	public static void selectNoTypedQuery(EntityManager entityManager) {
+		
+		String query = "select user from SystemUser user where user.di = 2";
+		
+		Query noTypedQuery = entityManager.createQuery(query);
+		SystemUser user = (SystemUser) noTypedQuery.getSingleResult();
+		
 		System.out.println(user);
 	}
 }
