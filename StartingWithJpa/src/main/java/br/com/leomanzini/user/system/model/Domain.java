@@ -62,4 +62,9 @@ public class Domain {
 	public int hashCode() {
 		return id.hashCode();
 	}
+
+	@Override
+	public String toString() {
+		return "Domain id: " + id + ", name: " + name + ", users: " + users;
+	}
 }
