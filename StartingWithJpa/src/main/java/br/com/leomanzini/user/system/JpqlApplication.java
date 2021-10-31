@@ -26,8 +26,10 @@ public class JpqlApplication {
 		
 //		choosingMoreThenOneReturnAbstraction(entityManager);
 		
-		choosingMoreThenOneReturn(entityManager);
+//		choosingMoreThenOneReturn(entityManager);
 
+		passParameters(entityManager);
+		
 		entityManager.close();
 		entityManagerFactory.close();
 	}
@@ -109,5 +111,26 @@ public class JpqlApplication {
 		List<Object []> arrayListOfObjects = arrayOfObjects.getResultList();
 		
 		arrayListOfObjects.forEach(arrayItem -> System.out.println(String.format("%s, %s, %s", arrayItem)));
+	}
+	
+	public static void passParameters(EntityManager entityManager) {
+		
+		/**
+		 * Colocamos o identificador de parametros ":" e o nome da var de parametros apos ele ":userId", por convencao usamos sempre o mesmo nome da 
+		 * propriedade comparada, nesse caso ficando: "select user from SystemUser user where user.id = :id", após criada a query, setamos o valor 
+		 * do parametro nela, passando a var que vamos substituir e o valor, por se tratar de uma classe, podemos emendar tudo
+		 */
+		String query = "select user from SystemUser user where user.id = :userId";
+		
+		// Criando query e depois setando o valor do parametro na mesma
+		TypedQuery<SystemUser> typedQuery = entityManager.createQuery(query, SystemUser.class);
+		typedQuery.setParameter("userId", 1);
+		
+		// Criando query e já setando o valor do parametro
+		// TypedQuery<SystemUser> typedQuery = entityManager.createQuery(query, SystemUser.class).setParameter("userId", 1);
+		
+		SystemUser user = typedQuery.getSingleResult();
+		
+		System.out.println(user);
 	}
 }
