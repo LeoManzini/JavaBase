@@ -1,5 +1,6 @@
 package br.com.leomanzini.user.system;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.leomanzini.user.system.dto.SystemUserDTO;
@@ -37,7 +38,9 @@ public class JpqlApplication {
 
 //		joinFetchTables(entityManager);
 
-		advancedFilters(entityManager);
+//		likeFilter(entityManager);
+		
+		betweenFilter(entityManager);
 
 		entityManager.close();
 		entityManagerFactory.close();
@@ -203,7 +206,10 @@ public class JpqlApplication {
 		listResult.forEach(listItem -> System.out.println(listItem));
 	}
 
-	public static void advancedFilters(EntityManager entityManager) {
+	public static void likeFilter(EntityManager entityManager) {
+		
+		// is null = "select user from SystemUser user where user.name is null" tras todos users com o valor definido na query sendo null
+		// is empty = "select domain from Domain domain where domain.users is empty" tras todos os dominios onde a lista de usuarios esta null
 		
 		// Exemplo com like e parameters
 		// String jpql = "select user from SystemUser user where user.name like :userName";
@@ -215,6 +221,18 @@ public class JpqlApplication {
 
 		TypedQuery<SystemUser> query = entityManager.createQuery(jpql, SystemUser.class)
 				.setParameter("userName", "Cal");
+		List<SystemUser> listResult = query.getResultList();
+
+		listResult.forEach(listItem -> System.out.println(listItem));
+	}
+	
+	public static void betweenFilter(EntityManager entityManager) {
+		
+		String jpql = "select user from SystemUser user where user.lastAccess between :yesterday and :today";
+
+		TypedQuery<SystemUser> query = entityManager.createQuery(jpql, SystemUser.class)
+				.setParameter("yesterday", LocalDateTime.now().minusDays(1))
+				.setParameter("today", LocalDateTime.now());
 		List<SystemUser> listResult = query.getResultList();
 
 		listResult.forEach(listItem -> System.out.println(listItem));
