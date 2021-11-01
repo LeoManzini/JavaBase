@@ -40,11 +40,13 @@ public class JpqlApplication {
 //		joinFetchTables(entityManager);
 
 //		likeFilter(entityManager);
-		
-//		betweenFilter(entityManager);
-		
-		logicalOperators(entityManager);
 
+//		betweenFilter(entityManager);
+
+//		logicalOperators(entityManager);
+
+		order(entityManager);
+		
 		entityManager.close();
 		entityManagerFactory.close();
 	}
@@ -210,64 +212,77 @@ public class JpqlApplication {
 	}
 
 	public static void likeFilter(EntityManager entityManager) {
-		
-		// is null = "select user from SystemUser user where user.name is null" tras todos users com o valor definido na query sendo null
-		// is empty = "select domain from Domain domain where domain.users is empty" tras todos os dominios onde a lista de usuarios esta null
-		
+
+		// is null = "select user from SystemUser user where user.name is null" tras
+		// todos users com o valor definido na query sendo null
+		// is empty = "select domain from Domain domain where domain.users is empty"
+		// tras todos os dominios onde a lista de usuarios esta null
+
 		// Exemplo com like e parameters
-		// String jpql = "select user from SystemUser user where user.name like :userName";
+		// String jpql = "select user from SystemUser user where user.name like
+		// :userName";
 		// No caso acima, precisamos passar o % como parametro na query
-		// TypedQuery<SystemUser> query = entityManager.createQuery(jpql, SystemUser.class)
+		// TypedQuery<SystemUser> query = entityManager.createQuery(jpql,
+		// SystemUser.class)
 		// .setParameter("userName", "Cal%");
-		// Como exemplificado abaixo, nao, pois ja estamos concatenando o valor recebido como parametro na propria query jpql
+		// Como exemplificado abaixo, nao, pois ja estamos concatenando o valor recebido
+		// como parametro na propria query jpql
 		String jpql = "select user from SystemUser user where user.name like concat(:userName, '%')";
 
-		TypedQuery<SystemUser> query = entityManager.createQuery(jpql, SystemUser.class)
-				.setParameter("userName", "Cal");
+		TypedQuery<SystemUser> query = entityManager.createQuery(jpql, SystemUser.class).setParameter("userName",
+				"Cal");
 		List<SystemUser> listResult = query.getResultList();
 
 		listResult.forEach(listItem -> System.out.println(listItem));
 	}
-	
+
 	public static void betweenFilter(EntityManager entityManager) {
-		
+
 		String jpql = "select user from SystemUser user where user.lastAccess between :yesterday and :today";
 
 		TypedQuery<SystemUser> query = entityManager.createQuery(jpql, SystemUser.class)
-				.setParameter("yesterday", LocalDateTime.now().minusDays(1))
-				.setParameter("today", LocalDateTime.now());
+				.setParameter("yesterday", LocalDateTime.now().minusDays(1)).setParameter("today", LocalDateTime.now());
 		List<SystemUser> listResult = query.getResultList();
 
 		listResult.forEach(listItem -> System.out.println(listItem));
 	}
-	
+
 	public static void logicalOperators(EntityManager entityManager) {
-		
+
 		// AND
 		String jpql = "select user from SystemUser user where user.lastAccess > :yesterday and user.lastAccess < :today";
 
 		TypedQuery<SystemUser> query = entityManager.createQuery(jpql, SystemUser.class)
-				.setParameter("yesterday", LocalDateTime.now().minusDays(1))
-				.setParameter("today", LocalDateTime.now());
-		
+				.setParameter("yesterday", LocalDateTime.now().minusDays(1)).setParameter("today", LocalDateTime.now());
+
 		List<SystemUser> listResult = query.getResultList();
 		listResult.forEach(listItem -> System.out.println(listItem));
-		
+
 		// OR
 		jpql = "select user from SystemUser user where user.id = 1 or user.id = 2";
 
 		query = entityManager.createQuery(jpql, SystemUser.class);
-		
+
 		listResult = query.getResultList();
 		listResult.forEach(listItem -> System.out.println(listItem));
-		
+
 		// IN
 		jpql = "select user from SystemUser user where user.id in (:ids)";
-		
-		query = entityManager.createQuery(jpql, SystemUser.class)
-				.setParameter("ids", Arrays.asList(3, 5));
-		
+
+		query = entityManager.createQuery(jpql, SystemUser.class).setParameter("ids", Arrays.asList(3, 5));
+
 		listResult = query.getResultList();
+		listResult.forEach(listItem -> System.out.println(listItem));
+	}
+
+	public static void order(EntityManager entityManager) {
+
+		String jpql = "select user from SystemUser user where user.id in (:ids) order by user.id";
+
+		TypedQuery<SystemUser> query = entityManager.createQuery(jpql, SystemUser.class)
+				.setParameter("ids", Arrays.asList(2, 5, 3, 4));
+		List<SystemUser> listResult = query.getResultList();
+
 		listResult.forEach(listItem -> System.out.println(listItem));
 	}
 }
