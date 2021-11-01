@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 
 @Entity
 @Table(name = "domain")
@@ -22,6 +23,13 @@ public class Domain {
 	@OneToMany(mappedBy = "domain")
 	private List<SystemUser> users;
 
+	/**
+	 * Gerencia versoes com o lock otimista, caso o registro for atualizado, de uma versao diferente do registro da base atualmente
+	 * nao atualiza, pois o dado foi alterado ou deletado durante a sua sessao, pois a cada alteracao esse atributo sera atualizado
+	 */
+	@Version
+	private Integer version;
+	
 	public Integer getId() {
 		return id;
 	}

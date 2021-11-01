@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 
 @Entity
 @Table(name = "system_user")
@@ -31,6 +32,13 @@ public class SystemUser {
 	
 	@OneToOne(mappedBy = "user")
 	private Configuration configuration;
+	
+	/**
+	 * Gerencia versoes com o lock otimista, caso o registro for atualizado, de uma versao diferente do registro da base atualmente
+	 * nao atualiza, pois o dado foi alterado ou deletado durante a sua sessao, pois a cada alteracao esse atributo sera atualizado
+	 */
+	@Version
+	private Integer version;
 
 	public SystemUser() {
 	}
