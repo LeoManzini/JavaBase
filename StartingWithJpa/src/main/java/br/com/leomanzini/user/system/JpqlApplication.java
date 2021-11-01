@@ -1,6 +1,7 @@
 package br.com.leomanzini.user.system;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 import br.com.leomanzini.user.system.dto.SystemUserDTO;
@@ -242,20 +243,31 @@ public class JpqlApplication {
 	
 	public static void logicalOperators(EntityManager entityManager) {
 		
+		// AND
 		String jpql = "select user from SystemUser user where user.lastAccess > :yesterday and user.lastAccess < :today";
 
 		TypedQuery<SystemUser> query = entityManager.createQuery(jpql, SystemUser.class)
 				.setParameter("yesterday", LocalDateTime.now().minusDays(1))
 				.setParameter("today", LocalDateTime.now());
+		
 		List<SystemUser> listResult = query.getResultList();
-
 		listResult.forEach(listItem -> System.out.println(listItem));
 		
+		// OR
 		jpql = "select user from SystemUser user where user.id = 1 or user.id = 2";
 
 		query = entityManager.createQuery(jpql, SystemUser.class);
+		
 		listResult = query.getResultList();
-
+		listResult.forEach(listItem -> System.out.println(listItem));
+		
+		// IN
+		jpql = "select user from SystemUser user where user.id in (:ids)";
+		
+		query = entityManager.createQuery(jpql, SystemUser.class)
+				.setParameter("ids", Arrays.asList(3, 5));
+		
+		listResult = query.getResultList();
 		listResult.forEach(listItem -> System.out.println(listItem));
 	}
 }
