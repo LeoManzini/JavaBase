@@ -45,7 +45,9 @@ public class JpqlApplication {
 
 //		logicalOperators(entityManager);
 
-		order(entityManager);
+//		order(entityManager);
+		
+		pagination(entityManager);
 		
 		entityManager.close();
 		entityManagerFactory.close();
@@ -281,6 +283,18 @@ public class JpqlApplication {
 
 		TypedQuery<SystemUser> query = entityManager.createQuery(jpql, SystemUser.class)
 				.setParameter("ids", Arrays.asList(2, 5, 3, 4));
+		List<SystemUser> listResult = query.getResultList();
+
+		listResult.forEach(listItem -> System.out.println(listItem));
+	}
+	
+	public static void pagination(EntityManager entityManager) {
+
+		String jpql = "select user from SystemUser user";
+
+		TypedQuery<SystemUser> query = entityManager.createQuery(jpql, SystemUser.class)
+				.setFirstResult(0)
+				.setMaxResults(2);
 		List<SystemUser> listResult = query.getResultList();
 
 		listResult.forEach(listItem -> System.out.println(listItem));
