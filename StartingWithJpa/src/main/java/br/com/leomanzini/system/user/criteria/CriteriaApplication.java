@@ -2,6 +2,7 @@ package br.com.leomanzini.system.user.criteria;
 
 import java.util.List;
 
+import br.com.leomanzini.system.user.jpql.dto.SystemUserDTO;
 import br.com.leomanzini.system.user.jpql.model.Domain;
 import br.com.leomanzini.system.user.jpql.model.SystemUser;
 import jakarta.persistence.EntityManager;
@@ -21,8 +22,12 @@ public class CriteriaApplication {
 
 //		criteriaSelect(entityManager);
 
-		choosingReturn(entityManager);
+//		choosingReturn(entityManager);
+		
+		choosingMoreThenOneReturn(entityManager);
 
+//		choosingMoreThenOneReturnAbstraction(entityManager);
+		
 		entityManager.close();
 		entityManagerFactory.close();
 	}
@@ -71,5 +76,35 @@ public class CriteriaApplication {
 //		List<String> resultList = typedQuery.getResultList();
 //
 //		resultList.forEach(listItem -> System.out.println(listItem));
+	}
+	
+	public static void choosingMoreThenOneReturnAbstraction(EntityManager entityManager) {
+
+		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Object []> criteriaQuery = criteriaBuilder.createQuery(Object [].class);
+
+		Root<SystemUser> root = criteriaQuery.from(SystemUser.class);
+		
+		criteriaQuery.multiselect(root.get("id"), root.get("name"), root.get("login"));
+		
+		TypedQuery<Object []> typedQuery = entityManager.createQuery(criteriaQuery);
+		List<Object []> resultList = typedQuery.getResultList();
+
+		resultList.forEach(listItem -> System.out.println(String.format("%s, %s, %s", listItem)));
+	}
+	
+	public static void choosingMoreThenOneReturn(EntityManager entityManager) {
+		
+		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<SystemUserDTO> criteriaQuery = criteriaBuilder.createQuery(SystemUserDTO.class);
+
+		Root<SystemUser> root = criteriaQuery.from(SystemUser.class);
+		
+		criteriaQuery.select(criteriaBuilder.construct(SystemUserDTO.class, root.get("id"), root.get("name"), root.get("login")));
+		
+		TypedQuery<SystemUserDTO> typedQuery = entityManager.createQuery(criteriaQuery);
+		List<SystemUserDTO> resultList = typedQuery.getResultList();
+
+		resultList.forEach(listItem -> System.out.println(listItem));
 	}
 }
