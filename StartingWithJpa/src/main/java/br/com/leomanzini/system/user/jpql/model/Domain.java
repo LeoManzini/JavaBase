@@ -1,4 +1,4 @@
-package br.com.leomanzini.user.system.model;
+package br.com.leomanzini.system.user.jpql.model;
 
 import java.util.List;
 

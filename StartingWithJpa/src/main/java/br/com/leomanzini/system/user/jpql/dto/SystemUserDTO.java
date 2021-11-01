@@ -1,4 +1,4 @@
-package br.com.leomanzini.user.system.dto;
+package br.com.leomanzini.system.user.jpql.dto;
 
 public class SystemUserDTO {
 	

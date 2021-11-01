@@ -1,13 +1,13 @@
-package br.com.leomanzini.user.system;
+package br.com.leomanzini.system.user.jpql;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
-import br.com.leomanzini.user.system.dto.SystemUserDTO;
-import br.com.leomanzini.user.system.model.Configuration;
-import br.com.leomanzini.user.system.model.Domain;
-import br.com.leomanzini.user.system.model.SystemUser;
+import br.com.leomanzini.system.user.jpql.dto.SystemUserDTO;
+import br.com.leomanzini.system.user.jpql.model.Configuration;
+import br.com.leomanzini.system.user.jpql.model.Domain;
+import br.com.leomanzini.system.user.jpql.model.SystemUser;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
