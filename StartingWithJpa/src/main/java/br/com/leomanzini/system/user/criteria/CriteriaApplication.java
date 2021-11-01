@@ -28,7 +28,9 @@ public class CriteriaApplication {
 
 //		choosingMoreThenOneReturnAbstraction(entityManager);
 		
-		passParameters(entityManager);
+//		passParameters(entityManager);
+		
+		order(entityManager);
 		
 		entityManager.close();
 		entityManagerFactory.close();
@@ -134,5 +136,21 @@ public class CriteriaApplication {
 		user = typedQuery.getSingleResult();
 
 		System.out.println(user);
+	}
+	
+	public static void order(EntityManager entityManager) {
+		
+		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<SystemUser> criteriaQuery = criteriaBuilder.createQuery(SystemUser.class);
+
+		Root<SystemUser> root = criteriaQuery.from(SystemUser.class);
+
+		criteriaQuery.select(root);
+		criteriaQuery.orderBy(criteriaBuilder.desc(root.get("name")));
+
+		TypedQuery<SystemUser> typedQuery = entityManager.createQuery(criteriaQuery);
+		List<SystemUser> resultList = typedQuery.getResultList();
+
+		resultList.forEach(user -> System.out.println(user));
 	}
 }
