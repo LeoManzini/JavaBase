@@ -30,7 +30,9 @@ public class CriteriaApplication {
 		
 //		passParameters(entityManager);
 		
-		order(entityManager);
+//		order(entityManager);
+		
+		pagination(entityManager);
 		
 		entityManager.close();
 		entityManagerFactory.close();
@@ -149,6 +151,23 @@ public class CriteriaApplication {
 		criteriaQuery.orderBy(criteriaBuilder.desc(root.get("name")));
 
 		TypedQuery<SystemUser> typedQuery = entityManager.createQuery(criteriaQuery);
+		List<SystemUser> resultList = typedQuery.getResultList();
+
+		resultList.forEach(user -> System.out.println(user));
+	}
+	
+	public static void pagination(EntityManager entityManager) {
+		
+		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<SystemUser> criteriaQuery = criteriaBuilder.createQuery(SystemUser.class);
+
+		Root<SystemUser> root = criteriaQuery.from(SystemUser.class);
+
+		criteriaQuery.select(root);
+
+		TypedQuery<SystemUser> typedQuery = entityManager.createQuery(criteriaQuery)
+				.setFirstResult(0) // Calculo firstResult: firstResult = (PaginaAtual - 1) * QuantidadeRegistrosPagina
+				.setMaxResults(2);
 		List<SystemUser> resultList = typedQuery.getResultList();
 
 		resultList.forEach(user -> System.out.println(user));
