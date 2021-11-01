@@ -33,7 +33,9 @@ public class JpqlApplication {
 		
 //		joiningTables(entityManager);
 		
-		leftJoiningTables(entityManager);
+//		leftJoiningTables(entityManager);
+
+		joinFetchTables(entityManager);
 		
 		entityManager.close();
 		entityManagerFactory.close();
@@ -174,5 +176,15 @@ public class JpqlApplication {
 			
 			System.out.println(output);
 		});
+	}
+	
+	public static void joinFetchTables(EntityManager entityManager) {
+		
+		String jpql = "select user from SystemUser user join fetch user.configuration join fetch user.domain";
+		
+		TypedQuery<SystemUser> query = entityManager.createQuery(jpql, SystemUser.class);
+		List<SystemUser> listResult = query.getResultList();
+		
+		listResult.forEach(listItem -> System.out.println(listItem));
 	}
 }
