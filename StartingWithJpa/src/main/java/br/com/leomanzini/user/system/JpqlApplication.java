@@ -3,6 +3,7 @@ package br.com.leomanzini.user.system;
 import java.util.List;
 
 import br.com.leomanzini.user.system.dto.SystemUserDTO;
+import br.com.leomanzini.user.system.model.Configuration;
 import br.com.leomanzini.user.system.model.Domain;
 import br.com.leomanzini.user.system.model.SystemUser;
 import jakarta.persistence.EntityManager;
@@ -150,5 +151,28 @@ public class JpqlApplication {
 	
 	public static void leftJoiningTables(EntityManager entityManager) {
 		
+		String jpql = "select user, configuration from SystemUser user left join user.configuration configuration";
+		
+		TypedQuery<Object []> query = entityManager.createQuery(jpql, Object [].class);
+		List<Object []> resultList = query.getResultList();
+		
+		resultList.forEach(arrayItem -> {
+			// arrayItem[0] == SystemUser
+			// arrayItem[1] == Configuration
+			// Isso acima acontece devido a ser uma composicao de Objects retornada na query JPQL, sempre que usarmos um array de objetos
+			// para trazer o resultado da query teremos isso, a posição 0 equivalendo ao primeiro campo trazido, e assim por diante.
+			// Por isso dentro do forEach deu certo usar assim, pois para cada item do nosso array de objetos, a posicao 0 vai ser user, e a 
+			// posicao 1 vai ser configuracao, desse modo percorrendo todos os itens retornados na consulta.
+			
+			String output = ((SystemUser) arrayItem[0]).getName();
+			
+			if(arrayItem[1] == null) {
+				output += ", NULL";
+			} else {
+				output += ", " + ((Configuration) arrayItem[1]).getUser().getDomain().getName();
+			}
+			
+			System.out.println(output);
+		});
 	}
 }
