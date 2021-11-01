@@ -124,5 +124,15 @@ public class CriteriaApplication {
 		SystemUser user = typedQuery.getSingleResult();
 
 		System.out.println(user);
+		
+		// Passando uma string no where
+		
+		criteriaQuery.select(root);
+		criteriaQuery.where(criteriaBuilder.equal(root.get("login"), "ria"));
+
+		typedQuery = entityManager.createQuery(criteriaQuery);
+		user = typedQuery.getSingleResult();
+
+		System.out.println(user);
 	}
 }
