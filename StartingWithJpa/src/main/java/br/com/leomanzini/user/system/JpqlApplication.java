@@ -28,7 +28,11 @@ public class JpqlApplication {
 		
 //		choosingMoreThenOneReturn(entityManager);
 
-		passParameters(entityManager);
+//		passParameters(entityManager);
+		
+//		joiningTables(entityManager);
+		
+		leftJoiningTables(entityManager);
 		
 		entityManager.close();
 		entityManagerFactory.close();
@@ -132,5 +136,19 @@ public class JpqlApplication {
 		SystemUser user = typedQuery.getSingleResult();
 		
 		System.out.println(user);
+	}
+	
+	public static void joiningTables(EntityManager entityManager) {
+		
+		String jpql = "select user from SystemUser user join user.domain domain where domain.id = 1";
+		
+		TypedQuery<SystemUser> query = entityManager.createQuery(jpql, SystemUser.class);
+		List<SystemUser> resultList = query.getResultList();
+		
+		resultList.forEach(listItem -> System.out.println(listItem));
+	}
+	
+	public static void leftJoiningTables(EntityManager entityManager) {
+		
 	}
 }
