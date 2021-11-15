@@ -21,25 +21,50 @@
 <!-- 	</persistence-unit> -->
 	
 <!-- Persistencia usada na aula 2, pacote br.com.leomanzini.user.system -->
-	<persistence-unit name="dev-local-database" transaction-type="RESOURCE_LOCAL">
-		<properties>
-			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> <!-- DB Driver -->
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/learning-environment" /> <!-- BD Mane -->
-			<property name="javax.persistence.jdbc.user" value="postgres" /> <!-- DB User -->
-			<property name="javax.persistence.jdbc.password" value="281219" /> <!-- DB Password -->
+<!-- 	<persistence-unit name="dev-local-database" transaction-type="RESOURCE_LOCAL"> -->
+<!-- 		<properties> -->
+<!-- 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> DB Driver -->
+<!-- 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/learning-environment" /> BD Mane -->
+<!-- 			<property name="javax.persistence.jdbc.user" value="postgres" /> DB User -->
+<!-- 			<property name="javax.persistence.jdbc.password" value="281219" /> DB Password -->
 
-			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" /> <!-- DB Dialect -->
+<!-- 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" /> DB Dialect -->
 			
-			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/> <!-- create / create-drop / update -->
-            <property name="javax.persistence.sql-load-script-source" value="META-INF/database/data-loader.sql" /> <!-- load data to database -->
+<!-- 			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/> create / create-drop / update -->
+<!--            <property name="javax.persistence.sql-load-script-source" value="META-INF/database/data-loader.sql" /> load data to database -->
 
-			<property name="hibernate.show_sql" value="true" /> <!-- Show SQL in console -->
-			<property name="hibernate.format_sql" value="true" /> <!-- Show SQL formatted -->
+<!-- 			<property name="hibernate.show_sql" value="true" /> Show SQL in console -->
+<!-- 			<property name="hibernate.format_sql" value="true" /> Show SQL formatted -->
 			
 <!-- 			<property name="javax.persistence.sharedCache.mode" value="ALL"/> -->
 <!-- 			<property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.jcache.internal.JCacheRegionFactory"/> -->
 <!-- 			<property name="hibernate.javax.cache.provider" value="org.ehcache.jsr107.EhcacheCachingProvider"/> -->
 <!-- 			<property name="hibernate.javax.cache.uri" value="ehcache.xml"/> -->
+<!-- 		</properties> -->
+<!-- 	</persistence-unit> -->
+
+<!-- Persistencia usada na aula sobre procedures, pacote br.com.leomanzini.procedures -->
+	<persistence-unit name="procedures">
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/learning-environment" />
+			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="281219" />
+			
+			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+			
+			<property name="javax.persistence.schema-generation.create-source" value="metadata-then-script"/>
+            <property name="javax.persistence.schema-generation.drop-source" value="metadata-then-script"/>
+            
+            <property name="javax.persistence.schema-generation.create-script-source" value="META-INF/database/script-creation.sql"/>
+            <property name="javax.persistence.schema-generation.drop-script-source" value="META-INF/database/drop-script.sql"/>
+			
+			<property name="javax.persistence.sql-load-script-source" value="META-INF/database/data-injection.sql" />
+			
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			
+			<property name="hibernate.show_sql" value="true" /> 
+ 			<property name="hibernate.format_sql" value="true" />
 		</properties>
 	</persistence-unit>
 </persistence>

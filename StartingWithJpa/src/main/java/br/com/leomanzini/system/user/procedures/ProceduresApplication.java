@@ -8,7 +8,7 @@ public class ProceduresApplication {
 
 	public static void main(String[] args) {
 		
-		EntityManagerFactory entityFactory = Persistence.createEntityManagerFactory("RESOURCE_LOCAL");
+		EntityManagerFactory entityFactory = Persistence.createEntityManagerFactory("procedures");
 		EntityManager entityManager = entityFactory.createEntityManager();
 		
 //		queriesWithProcedures(entityManager);

@@ -1,10 +1,4 @@
-create procedure product_name(in product_id int, out product_name varchar(255)) 
-begin 
-	select name 
-		into product_name 
-	from product 
-	where id = product_id; 
-end
+create procedure product_name(in product_id int, out product_name varchar(255)) begin select name into product_name from product where id = product_id; end
 
 create procedure search_products(in termo varchar(30)) 
 begin 
