@@ -35,6 +35,11 @@
 
 			<property name="hibernate.show_sql" value="true" /> <!-- Show SQL in console -->
 			<property name="hibernate.format_sql" value="true" /> <!-- Show SQL formatted -->
+			
+<!-- 			<property name="javax.persistence.sharedCache.mode" value="ALL"/> -->
+<!-- 			<property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.jcache.internal.JCacheRegionFactory"/> -->
+<!-- 			<property name="hibernate.javax.cache.provider" value="org.ehcache.jsr107.EhcacheCachingProvider"/> -->
+<!-- 			<property name="hibernate.javax.cache.uri" value="ehcache.xml"/> -->
 		</properties>
 	</persistence-unit>
 </persistence>
