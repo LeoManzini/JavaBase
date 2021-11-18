@@ -1,4 +1,4 @@
-package br.com.leomanzini.system.user.procedures;
+package br.com.leomanzini.products.procedures;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -9,7 +9,7 @@ import javax.persistence.ParameterMode;
 import javax.persistence.Persistence;
 import javax.persistence.StoredProcedureQuery;
 
-import br.com.leomanzini.system.user.procedures.model.Product;
+import br.com.leomanzini.products.procedures.model.Product;
 
 public class ProceduresApplication {
 

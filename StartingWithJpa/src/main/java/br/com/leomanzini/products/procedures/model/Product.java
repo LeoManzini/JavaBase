@@ -1,20 +1,32 @@
-package br.com.leomanzini.system.user.natives.dto;
+package br.com.leomanzini.products.procedures.model;
 
-public class UsersDTO {
+import javax.persistence.Id;
+
+import java.math.BigDecimal;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+@Entity
+public class Product {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-    private String login;
-    private String name;
-    
-    public UsersDTO() {
-	}
-
-	public UsersDTO(Integer id, String login, String name) {
-		this.id = id;
-		this.login = login;
-		this.name = name;
+	
+	private String name;
+	private BigDecimal price;
+	
+	public Product() {
 	}
 	
+	public Product(Integer id, String name, BigDecimal price) {
+		this.id = id;
+		this.name = name;
+		this.price = price;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -23,20 +35,20 @@ public class UsersDTO {
 		this.id = id;
 	}
 
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-	
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
 	}
 
 	@Override
@@ -55,7 +67,7 @@ public class UsersDTO {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UsersDTO other = (UsersDTO) obj;
+		Product other = (Product) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -66,6 +78,6 @@ public class UsersDTO {
 
 	@Override
 	public String toString() {
-		return "UsersDTO id: " + id + ", login: " + login + ", name: " + name;
+		return "Product id: " + id + ", name: " + name + ", price: " + price;
 	}
 }

@@ -1,8 +1,8 @@
-package br.com.leomanzini.system.user.natives;
+package br.com.leomanzini.users.natives;
 
 import java.util.List;
 
-import br.com.leomanzini.system.user.natives.model.Users;
+import br.com.leomanzini.users.natives.model.Users;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;

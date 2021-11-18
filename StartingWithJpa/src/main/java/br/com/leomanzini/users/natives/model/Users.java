@@ -1,6 +1,6 @@
-package br.com.leomanzini.system.user.natives.model;
+package br.com.leomanzini.users.natives.model;
 
-import br.com.leomanzini.system.user.natives.dto.UsersDTO;
+import br.com.leomanzini.users.natives.dto.UsersDTO;
 import jakarta.persistence.ColumnResult;
 import jakarta.persistence.ConstructorResult;
 import jakarta.persistence.Entity;
