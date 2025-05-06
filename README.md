@@ -1,2 +1,2 @@
 # JavaBase
-Workspace used while I'm studying the base of Java and object orientation
+Workspace used while I was studying the base of Java and object orientation
